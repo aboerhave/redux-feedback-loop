@@ -6,6 +6,7 @@ import {HashRouter as Router, Route} from 'react-router-dom';
 import Header from '../Header/Header';
 import Feeling from '../Feeling/Feeling';
 import Understanding from '../Understanding/Understanding';
+import Support from '../Support/Support';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
 
           <Route exact path='/' component={Feeling} />
           <Route path='/understanding' component={Understanding} />
+          <Route path='/support' component={Support} />
         </div>
       </Router>
     );
