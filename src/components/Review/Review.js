@@ -10,6 +10,21 @@ class Review extends Component {
 advancePage = () => {
     console.log('click forward');
     // store the redux values in the db here
+    axios({
+        method: 'POST',
+        url: '/feedback',
+        data: {
+            feeling: this.props.reduxStore.feelingValue,
+            understanding: this.props.reduxStore.understandingValue,
+            support: this.props.reduxStore.supportValue,
+            comments: this.props.reduxStore.commentsValue
+        }
+    }).then((response) => {
+        console.log('response', response);
+    }).catch((error) => {
+        console.log('error in POST feedback');
+        alert('There was a problem.  Please try again later.');
+    })
     // clear the values from redux
     this.props.dispatch({type: 'CLEAR_VALUES'});
 
