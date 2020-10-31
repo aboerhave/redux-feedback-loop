@@ -17,7 +17,7 @@ class Understanding extends Component {
     return (
       <div className="App">
           <h2>How well are you understanding the content? (1-10)</h2>
-          <label>Feeling?</label>
+          <label>Understanding?</label>
           <br/>
           <select name="cars" id="cars">
             <option value="1">1</option>
