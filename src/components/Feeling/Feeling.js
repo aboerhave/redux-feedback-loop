@@ -23,6 +23,7 @@ class Feeling extends Component {
             <option value="9">9</option>
             <option value="10">10</option>
           </select>
+          <button>→</button>
       </div>
     );
   }
