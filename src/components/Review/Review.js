@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {HashRouter as Router, Route} from 'react-router-dom';
+import './Review.css'
 
 class Review extends Component {
 
@@ -25,7 +26,6 @@ advancePage = () => {
     return (
       <div >
           <h2>Review Your Feedback</h2>
-          {JSON.stringify(this.props.reduxStore)}
           <table>
                 <thead>
                     <tr>
