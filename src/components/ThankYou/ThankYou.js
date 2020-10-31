@@ -15,7 +15,7 @@ class ThankYou extends Component {
     return (
       <div className="App">
           <h2>Thank You for your Feedback!!</h2>
-          <button onClick={this.advancePage}>Submit</button>
+          <button onClick={this.advancePage}>Leave New Feedback</button>
       </div>
     );
   }
