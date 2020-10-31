@@ -8,7 +8,7 @@ class Understanding extends Component {
   render() {
     return (
       <div className="App">
-          <h2>How are you feeling today? (1-10)</h2>
+          <h2>How well are you understanding the content? (1-10)</h2>
           <label>Feeling?</label>
           <br/>
           <select name="cars" id="cars">
