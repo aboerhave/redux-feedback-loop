@@ -5,6 +5,13 @@ import {HashRouter as Router, Route} from 'react-router-dom';
 import Header from '../Header/Header';
 
 class Support extends Component {
+
+    advancePage = () => {
+        console.log('click forward');
+        // dispatch goes here for sending data to redux of feeling value
+        this.props.history.push('/comments');
+      }
+
   render() {
     return (
       <div className="App">
@@ -23,7 +30,7 @@ class Support extends Component {
             <option value="9">9</option>
             <option value="10">10</option>
           </select>
-          <button>→</button>
+          <button onClick={this.advancePage}>→</button>
       </div>
     );
   }
