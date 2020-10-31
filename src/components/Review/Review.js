@@ -13,8 +13,9 @@ class Review extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div >
           <h2>Review Your Feedback</h2>
+          {JSON.stringify(this.props.reduxStore)}
           <ul>
               <li>Feelings</li>
               <li>Understanding</li>

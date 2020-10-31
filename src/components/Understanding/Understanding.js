@@ -6,20 +6,30 @@ import Header from '../Header/Header';
 
 class Understanding extends Component {
 
+    state = {
+        understanding: 0
+    }
+
+    pickValue = (event) => {
+        this.setState({
+          understanding: event.target.value
+        })
+      }
+    
     advancePage = () => {
         console.log('click forward');
         // dispatch goes here for sending data to redux of understanding value
+        this.props.dispatch({type: 'SET_UNDERSTANDING_VALUE', payload: this.state.understanding});
         this.props.history.push('/support');
       }
 
-
   render() {
     return (
-      <div className="App">
+      <div >
           <h2>How well are you understanding the content? (1-10)</h2>
           <label>Understanding?</label>
           <br/>
-          <select name="cars" id="cars">
+          <select onClick={this.pickValue} >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -32,6 +42,7 @@ class Understanding extends Component {
             <option value="10">10</option>
           </select>
           <button onClick={this.advancePage}>→</button>
+          {JSON.stringify(this.state.understanding)}
       </div>
     );
   }

@@ -13,7 +13,7 @@ class ThankYou extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div >
           <h2>Thank You for your Feedback!!</h2>
           <button onClick={this.advancePage}>Leave New Feedback</button>
       </div>

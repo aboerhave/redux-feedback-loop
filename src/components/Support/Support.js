@@ -6,19 +6,30 @@ import Header from '../Header/Header';
 
 class Support extends Component {
 
+    state = {
+        support: 0
+    }
+
+    pickValue = (event) => {
+        this.setState({
+          support: event.target.value
+        })
+      }
+    
     advancePage = () => {
         console.log('click forward');
-        // dispatch goes here for sending data to redux of feeling value
+        // dispatch goes here for sending data to redux of support value
+        this.props.dispatch({type: 'SET_SUPPORT_VALUE', payload: this.state.support});
         this.props.history.push('/comments');
       }
 
   render() {
     return (
-      <div className="App">
+      <div >
           <h2>How well are you being supported? (1-10)</h2>
           <label>Support?</label>
           <br/>
-          <select name="cars" id="cars">
+          <select onClick={this.pickValue} >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

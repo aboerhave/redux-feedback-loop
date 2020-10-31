@@ -6,19 +6,32 @@ import Header from '../Header/Header';
 
 class Feeling extends Component {
 
+  state = {
+    feeling: 0
+  }
+
+  pickValue = (event) => {
+    this.setState({
+      feeling: event.target.value
+    })
+  }
+
   advancePage = () => {
     console.log('click forward');
+    console.log(this.state.feeling);
+    
     // dispatch goes here for sending data to redux of feeling value
+    this.props.dispatch({type: 'SET_FEELING_VALUE', payload: this.state.feeling});
     this.props.history.push('/understanding');
   }
 
   render() {
     return (
-      <div className="App">
+      <div >
           <h2>How are you feeling today? (1-10)</h2>
           <label>Feeling?</label>
           <br/>
-          <select name="cars" id="cars">
+          <select onChange={this.pickValue} name="feeling" >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -31,6 +44,7 @@ class Feeling extends Component {
             <option value="10">10</option>
           </select>
           <button onClick={this.advancePage}>→</button>
+          {JSON.stringify(this.state.feeling)}
       </div>
     );
   }
