@@ -4,10 +4,10 @@ import {connect} from 'react-redux';
 import {HashRouter as Router, Route} from 'react-router-dom';
 import Header from '../Header/Header';
 
-class Feeling extends Component {
+class Feeling2 extends Component {
 
   state = {
-    feeling: this.props.reduxStore.feelingValue || 0
+    feeling: this.props.reduxStore.feeling || 0
   }
 
   pickValue = (event) => {
@@ -31,7 +31,7 @@ class Feeling extends Component {
           <h2>How are you feeling today? (1-10)</h2>
           <label>Feeling?</label>
           <br/>
-          <select value={this.state.feeling} onChange={this.pickValue} name="feeling" >
+          <select value={this.state.feeling} onChange={this.pickValue} name="feeling2" >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -43,10 +43,8 @@ class Feeling extends Component {
             <option value="9">9</option>
             <option value="10">10</option>
           </select>
-          {/* {JSON.stringify(this.state.feeling)} */}
-          {JSON.stringify(this.props.reduxStore.feelingValue)}
-          <br/>
-          <button onClick={this.advancePage}>Next Page</button>
+          <button onClick={this.advancePage}>→</button>
+          {JSON.stringify(this.state.feeling)}
       </div>
     );
   }
@@ -56,4 +54,4 @@ const putReduxStateOnProps = (reduxStore) => ({
   reduxStore
 })
 
-export default connect(putReduxStateOnProps)(Feeling);
+export default connect(putReduxStateOnProps)(Feeling2);

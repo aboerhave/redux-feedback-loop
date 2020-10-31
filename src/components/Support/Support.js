@@ -7,7 +7,7 @@ import Header from '../Header/Header';
 class Support extends Component {
 
     state = {
-        support: 0
+        support: this.props.reduxStore.supportValue || 0
     }
 
     pickValue = (event) => {
@@ -23,13 +23,22 @@ class Support extends Component {
         this.props.history.push('/comments');
       }
 
+    backPage = () => {
+        console.log('click backward');
+        console.log('support', this.state.support);
+        // should I save the state it is here when they go back?
+        // probably not, because maybe they
+        // accidentally change it as they go back multiple pages?
+        this.props.history.push('/understanding');    
+    }
+
   render() {
     return (
       <div >
           <h2>How well are you being supported? (1-10)</h2>
           <label>Support?</label>
           <br/>
-          <select onClick={this.pickValue} >
+          <select value={this.state.support} onClick={this.pickValue} >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -41,7 +50,10 @@ class Support extends Component {
             <option value="9">9</option>
             <option value="10">10</option>
           </select>
-          <button onClick={this.advancePage}>→</button>
+          <br/>
+          {JSON.stringify(this.props.reduxStore.supportValue)}
+          <button onClick={this.backPage}>Previous Page</button>
+          <button onClick={this.advancePage}>Next Page</button>
       </div>
     );
   }

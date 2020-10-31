@@ -5,23 +5,55 @@ import {HashRouter as Router, Route} from 'react-router-dom';
 
 class Review extends Component {
 
-  advancePage = () => {
+
+advancePage = () => {
     console.log('click forward');
-    // dispatch goes here for sending data to redux of feeling value
+    // store the redux values in the db here
+    // clear the values from redux
+    this.props.dispatch({type: 'CLEAR_VALUES'});
+
     this.props.history.push('/thankYou');
   }
+
+  backPage = () => {
+    console.log('click backward');
+
+    this.props.history.push('/comments');    
+}
 
   render() {
     return (
       <div >
           <h2>Review Your Feedback</h2>
           {JSON.stringify(this.props.reduxStore)}
-          <ul>
-              <li>Feelings</li>
-              <li>Understanding</li>
-              <li>Support</li>
-              <li>Comments</li>
-          </ul>
+          <table>
+                <thead>
+                    <tr>
+                        <th>Value</th>  
+                        <th>Your Response</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Feeling Today</td>
+                        <td>{this.props.reduxStore.feelingValue}</td>
+                    </tr>
+                    <tr>
+                        <td>Understanding Content</td>
+                        <td>{this.props.reduxStore.understandingValue}</td>
+                    </tr>
+                    <tr>
+                        <td>Supported Today</td>
+                        <td>{this.props.reduxStore.supportValue}</td>
+                    </tr>
+                    <tr>
+                        <td>Comments</td>
+                        <td>{this.props.reduxStore.commentsValue}</td>
+                    </tr>
+                </tbody>
+          </table>
+          <br/>
+          <button onClick={this.backPage}>Previous Page</button>
           <button onClick={this.advancePage}>Submit</button>
       </div>
     );

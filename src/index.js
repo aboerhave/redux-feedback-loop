@@ -9,9 +9,13 @@ import logger from 'redux-logger';
 
 const feelingValue = (state = 0, action) => {
     // console.log(action.payload);
+    console.log(action.type);
     switch(action.type) {        
         case 'SET_FEELING_VALUE': 
             return action.payload;
+        case 'CLEAR_VALUES':
+            state = 0;
+            return state;
         default: 
             return state;
     }
@@ -19,9 +23,13 @@ const feelingValue = (state = 0, action) => {
 
 const understandingValue = (state = 0, action) => {
     console.log(action.payload);
+    console.log(action.type);
     switch(action.type) {        
         case 'SET_UNDERSTANDING_VALUE': 
             return action.payload;
+        case 'CLEAR_VALUES':
+            state = 0;
+            return state;
         default: 
             return state;
     }
@@ -29,9 +37,13 @@ const understandingValue = (state = 0, action) => {
 
 const supportValue = (state = 0, action) => {
     console.log(action.payload);
+    console.log(action.type);
     switch(action.type) {        
         case 'SET_SUPPORT_VALUE': 
             return action.payload;
+        case 'CLEAR_VALUES':
+            state = 0;
+            return state;
         default: 
             return state;
     }
@@ -39,9 +51,13 @@ const supportValue = (state = 0, action) => {
 
 const commentsValue = (state = '', action) => {
     console.log(action.payload);
+    console.log(action.type);
     switch(action.type) {
         case 'SET_COMMENTS': 
             return action.payload
+        case 'CLEAR_VALUES':
+            state = '';
+            return state;
         default: 
             return state;
     }

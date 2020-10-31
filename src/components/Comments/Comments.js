@@ -7,7 +7,7 @@ import Header from '../Header/Header';
 class Comments extends Component {
 
   state = {
-    comments: ''
+    comments: this.props.reduxStore.commentsValue || ''
   }
 
   handleChange = (event) => {
@@ -23,15 +23,26 @@ class Comments extends Component {
     this.props.history.push('/review');
   }
 
+  backPage = () => {
+    console.log('click backward');
+    console.log('comments', this.state.comments);
+    // should I save the state it is here when they go back?
+    // probably not, because maybe they
+    // accidentally change it as they go back multiple pages?
+    this.props.history.push('/support');    
+}
+
   render() {
     return (
       <div >
           <h2>You may leave any comments here</h2>
           <label>Comments</label>
           <br/>
-          <input type="text" onChange={this.handleChange} />
-          <button onClick={this.advancePage}>→</button>
+          <input type="text" onChange={this.handleChange} value={this.state.comments}/>
           {JSON.stringify(this.state.comments)}
+          <br/>
+          <button onClick={this.backPage}>Previous Page</button>
+          <button onClick={this.advancePage}>Next Page</button>
       </div>
     );
   }
