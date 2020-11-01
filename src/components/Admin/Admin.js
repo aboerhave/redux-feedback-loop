@@ -40,6 +40,11 @@ class Admin extends Component {
         })
     }
 
+    flagItem = (flagId) => {
+        console.log('flagId', flagId);
+        
+    }
+
   render() {
       return (
         <div >
@@ -57,13 +62,13 @@ class Admin extends Component {
                 <tbody>
                     {this.props.reduxStore.feedbackList.map((item) => 
                         // return 
-                        <tr>
+                        <tr key={item.id}>
                             <td>{item.feeling}</td>
                             <td>{item.understanding}</td>
                             <td>{item.support}</td>
                             <td>{item.comments}</td>
                             <td><button onClick={() => this.deleteItem(item.id)}>Delete</button></td>
-                            <td><button>Flag</button></td>
+                            <td><form><input type="checkbox" onChange={() => this.flagItem(item.id)}></input></form></td>
                         </tr>
                     )}
                 </tbody>
