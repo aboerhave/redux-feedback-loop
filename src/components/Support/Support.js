@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import {HashRouter as Router, Route} from 'react-router-dom';
-import Header from '../Header/Header';
 
 class Support extends Component {
 
     state = {
-        support: this.props.reduxStore.supportValue || 0
+        support: this.props.reduxStore.supportValue || 1
     }
 
     pickValue = (event) => {
@@ -18,10 +16,22 @@ class Support extends Component {
     
     advancePage = () => {
         console.log('click forward');
+        console.log(this.state.support);
+        if ( this.state.support === 1) {
+            let accept = window.confirm("Please confirm your choice of 1");
+            if(accept) {
         // dispatch goes here for sending data to redux of support value
         this.props.dispatch({type: 'SET_SUPPORT_VALUE', payload: this.state.support});
         this.props.history.push('/comments');
-      }
+            }
+            else {
+                return;
+            }
+        }
+        // dispatch goes here for sending data to redux of support value
+        this.props.dispatch({type: 'SET_SUPPORT_VALUE', payload: this.state.support});
+        this.props.history.push('/comments');
+    }
 
     backPage = () => {
         console.log('click backward');

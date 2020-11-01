@@ -7,7 +7,7 @@ import Header from '../Header/Header';
 class Understanding extends Component {
 
     state = {
-        understanding: this.props.reduxStore.understandingValue || 0
+        understanding: this.props.reduxStore.understandingValue || 1
     }
 
     pickValue = (event) => {
@@ -18,6 +18,18 @@ class Understanding extends Component {
     
     advancePage = () => {
         console.log('click forward');
+        console.log(this.state.understanding);    
+        if ( this.state.understanding === 1) {
+            let accept = window.confirm("Please confirm your choice of 1");
+            if(accept) {
+                // dispatch goes here for sending data to redux of understanding value
+                this.props.dispatch({type: 'SET_UNDERSTANDING_VALUE', payload: this.state.understanding});
+                this.props.history.push('/support');
+            }
+            else {
+                return;
+            }
+        }
         // dispatch goes here for sending data to redux of understanding value
         this.props.dispatch({type: 'SET_UNDERSTANDING_VALUE', payload: this.state.understanding});
         this.props.history.push('/support');

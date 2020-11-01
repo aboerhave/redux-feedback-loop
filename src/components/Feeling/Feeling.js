@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import {HashRouter as Router, Route} from 'react-router-dom';
-import Header from '../Header/Header';
 
 class Feeling extends Component {
 
   state = {
-    feeling: this.props.reduxStore.feelingValue || 0
+    feeling: this.props.reduxStore.feelingValue || 1
   }
 
   pickValue = (event) => {
@@ -19,7 +17,17 @@ class Feeling extends Component {
   advancePage = () => {
     console.log('click forward');
     console.log(this.state.feeling);
-    
+    if ( this.state.feeling === 1) {
+      let accept = window.confirm("Please confirm your choice of 1");
+      if(accept) {
+        // dispatch goes here for sending data to redux of feeling value
+        this.props.dispatch({type: 'SET_FEELING_VALUE', payload: this.state.feeling});
+        this.props.history.push('/understanding');
+      }      
+      else {
+        return;
+      }
+    }
     // dispatch goes here for sending data to redux of feeling value
     this.props.dispatch({type: 'SET_FEELING_VALUE', payload: this.state.feeling});
     this.props.history.push('/understanding');
