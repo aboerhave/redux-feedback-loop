@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: #033076;
+  background-color: #342770;
   min-height: 70px;
   padding: 20px;
   color: white;
@@ -17,3 +17,6 @@
   font-size: large;
 }
 
+body {
+  background-color: rgb(226, 185, 238);
+}
