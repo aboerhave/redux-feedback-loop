@@ -39,7 +39,7 @@ class Understanding extends Component {
           <h2>How well are you understanding the content? (1-10)</h2>
           <label>Understanding?</label>
           <br/>
-          <select value={this.state.understanding} onClick={this.pickValue} >
+          <select value={this.state.understanding} onChange={this.pickValue} >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
