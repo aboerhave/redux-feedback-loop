@@ -44,4 +44,19 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+router.put('/:id', (req, res) => {
+    console.log('put req.params.id', req.params.id);
+    console.log('put req.body.data', req.body.flagStatus);
+    let queryText = `update feedback set "flagged" = $1 
+    where id = $2;`;
+
+    pool.query(queryText, [req.body.flagStatus, req.params.id]).then((result) => {
+        console.log('result from put', result);
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('error in put', error);
+        res.sendStatus(500);
+    });
+})
+
 module.exports = router;

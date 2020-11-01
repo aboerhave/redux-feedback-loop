@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, useLayoutEffect } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {HashRouter as Router, Route} from 'react-router-dom';
 // import AdminTable from '../AdminTable/AdminTable';
 
 class Admin extends Component {
+
+    state = {
+        flagActive: false
+    }
 
     componentDidMount = () => {
         this.getFeedback();
@@ -37,12 +41,24 @@ class Admin extends Component {
             this.getFeedback();
         }).catch((error) => {
             console.log('error', error);            
-        })
+        });
     }
 
-    flagItem = (flagId) => {
+    flagItem = (flagId, flagStatus) => {
         console.log('flagId', flagId);
+        // this should send the opposite value to the server so the 
+        // database is changed to become the new value that's set here
+        flagStatus = !flagStatus;
         
+        console.log('flagStatus', flagStatus);
+            axios({
+                method: 'PUT',
+                url: `/feedback/${flagId}`,
+                data: {flagStatus, flagStatus}
+            }).then((response) => {
+                console.log('response', response);
+                this.getFeedback();
+            })
     }
 
   render() {
@@ -60,17 +76,17 @@ class Admin extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.reduxStore.feedbackList.map((item) => 
+                    {this.props.reduxStore.feedbackList.map((item) => {
                         // return 
-                        <tr key={item.id}>
-                            <td>{item.feeling}</td>
-                            <td>{item.understanding}</td>
-                            <td>{item.support}</td>
-                            <td>{item.comments}</td>
-                            <td><button onClick={() => this.deleteItem(item.id)}>Delete</button></td>
-                            <td><form><input type="checkbox" onChange={() => this.flagItem(item.id)}></input></form></td>
-                        </tr>
-                    )}
+                    return  <tr key={item.id}>
+                                <td>{item.feeling}</td>
+                                <td>{item.understanding}</td>
+                                <td>{item.support}</td>
+                                <td>{item.comments}</td>
+                                <td><button onClick={() => this.deleteItem(item.id)}>Delete</button></td>
+                                <td><form><input type="checkbox" onChange={() => this.flagItem(item.id, item.flagged)}></input></form></td>
+                            </tr>
+                    })}
                 </tbody>
             </table>
         </div>
