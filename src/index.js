@@ -64,6 +64,8 @@ const commentsValue = (state = '', action) => {
 }
 
 const feedbackList = (state = [], action) => {
+    console.log('action.payload', action.payload);
+    
     switch(action.type) {
         case 'GET_FEEDBACK':
             return action.payload;

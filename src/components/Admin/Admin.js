@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {HashRouter as Router, Route} from 'react-router-dom';
+// import AdminTable from '../AdminTable/AdminTable';
 
 class Admin extends Component {
 
@@ -22,9 +23,26 @@ class Admin extends Component {
         });
     }
 
+    deleteItem = (feedbackId) => {
+        console.log('clicked');
+        
+        // let feedbackId = this.props.item.id;
+        console.log('feedbackId', feedbackId);
+        
+        axios({
+            method: 'DELETE',
+            url: `/feedback/${feedbackId}`
+        }).then((response) => {
+            console.log('response in delete', response);
+            this.getFeedback();
+        }).catch((error) => {
+            console.log('error', error);            
+        })
+    }
+
   render() {
       return (
-        <div className="App">
+        <div >
             <table>
                 <thead>
                     <tr>
@@ -37,21 +55,19 @@ class Admin extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {JSON.stringify(this.props.reduxStore.feedbackList)} */}
                     {this.props.reduxStore.feedbackList.map((item) => 
                         // return 
-                        <tr key={item.id}>
+                        <tr>
                             <td>{item.feeling}</td>
                             <td>{item.understanding}</td>
                             <td>{item.support}</td>
                             <td>{item.comments}</td>
-                            <td><button>Delete</button></td>
+                            <td><button onClick={() => this.deleteItem(item.id)}>Delete</button></td>
                             <td><button>Flag</button></td>
                         </tr>
                     )}
                 </tbody>
             </table>
-
         </div>
     );
   }
@@ -62,3 +78,4 @@ const putReduxStateOnProps = (reduxStore) => ({
 })
 
 export default connect(putReduxStateOnProps)(Admin);
+
