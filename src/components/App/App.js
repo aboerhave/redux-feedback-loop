@@ -10,7 +10,7 @@ import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
 import ThankYou from '../ThankYou/ThankYou';
-// import Feeling2 from '../Feeling2/Feeling2';
+import Admin from '../Admin/Admin';
 
 class App extends Component {
   render() {
@@ -18,13 +18,15 @@ class App extends Component {
         <Router>
         <div className="App">
           <Header />
-          {/* <Feeling2 /> */}
+
           <Route exact path='/' component={Feeling} />
           <Route path='/understanding' component={Understanding} />
           <Route path='/support' component={Support} />
           <Route path='/comments' component={Comments} />
           <Route path='/review' component={Review} />
           <Route path='/thankYou' component={ThankYou} />
+          <Route path='/admin' component={Admin} />
+
         </div>
       </Router>
     );

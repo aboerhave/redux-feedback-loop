@@ -4,7 +4,7 @@ import './index.css';
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, bindActionCreators } from 'redux';
 import logger from 'redux-logger';
 
 const feelingValue = (state = 0, action) => {
@@ -63,12 +63,22 @@ const commentsValue = (state = '', action) => {
     }
 }
 
+const feedbackList = (state = [], action) => {
+    switch(action.type) {
+        case 'GET_FEEDBACK':
+            return action.payload;
+        default: 
+            return state;
+    }
+}
+
 const reduxStore = createStore(
     combineReducers({
         feelingValue, 
         understandingValue,
         supportValue,
-        commentsValue
+        commentsValue,
+        feedbackList
     }),
     applyMiddleware(logger)
 )

@@ -1,4 +1,5 @@
 const express = require('express');
+const { unstable_renderSubtreeIntoContainer } = require('react-dom');
 const router = express.Router();
 
 const pool = require('../modules/pool');
@@ -17,5 +18,15 @@ router.post('/', (req, res) => {
         res.sendStatus(500);
     });
 });
+
+router.get('/', (req, res) => {
+    let queryText = `select * from "feedback";`;
+
+    pool.query(queryText).then((result) => {
+        res.send(result.rows);
+    }).catch((error) => {
+        console.log('error in get feedback request', error);     
+    });
+})
 
 module.exports = router;
