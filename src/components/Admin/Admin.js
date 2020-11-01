@@ -3,6 +3,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {HashRouter as Router, Route} from 'react-router-dom';
 // import AdminTable from '../AdminTable/AdminTable';
+import './Admin.css'
 
 class Admin extends Component {
 
@@ -64,7 +65,8 @@ class Admin extends Component {
   render() {
       return (
         <div >
-            <table>
+            <h2>Feedback Results</h2>
+            <table className="adminTable">
                 <thead>
                     <tr>
                         <th>Feeling</th>
@@ -77,15 +79,28 @@ class Admin extends Component {
                 </thead>
                 <tbody>
                     {this.props.reduxStore.feedbackList.map((item) => {
-                        // return 
-                    return  <tr key={item.id}>
+                        // return
+                    if(item.flagged) {        
+                        return  <tr key={item.id} className="flaggedRow">
                                 <td>{item.feeling}</td>
                                 <td>{item.understanding}</td>
                                 <td>{item.support}</td>
                                 <td>{item.comments}</td>
                                 <td><button onClick={() => this.deleteItem(item.id)}>Delete</button></td>
-                                <td><form><input type="checkbox" onChange={() => this.flagItem(item.id, item.flagged)}></input></form></td>
+                                <td><form><input type="checkbox" onChange={() => this.flagItem(item.id, item.flagged)} checked="checked"></input></form></td>
+                            {/* {JSON.stringify(item.flagged)} */}
                             </tr>
+                        }
+                    else if (!item.flagged) {
+                        return  <tr key={item.id} className="unflaggedRow">
+                            <td>{item.feeling}</td>
+                            <td>{item.understanding}</td>
+                            <td>{item.support}</td>
+                            <td>{item.comments}</td>
+                            <td><button onClick={() => this.deleteItem(item.id)}>Delete</button></td>
+                            <td><form><input type="checkbox" onChange={() => this.flagItem(item.id, item.flagged)}></input></form></td>
+                        </tr>
+                    }    
                     })}
                 </tbody>
             </table>

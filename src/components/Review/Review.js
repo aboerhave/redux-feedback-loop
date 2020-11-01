@@ -41,7 +41,7 @@ advancePage = () => {
     return (
       <div >
           <h2>Review Your Feedback</h2>
-          <table>
+          <table className="reviewTable">
                 <thead>
                     <tr>
                         <th>Value</th>  

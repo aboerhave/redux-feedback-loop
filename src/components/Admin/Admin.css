@@ -1,0 +1,26 @@
+.flaggedRow {
+    background-color: rgb(247, 247, 44);
+}
+
+.unflaggedRow {
+    background-color: lightgrey;
+}
+
+.adminTable, th, td {
+    border-collapse: collapse;
+    border: 1px solid gray;
+    
+}
+
+.adminTable {
+    max-width: 80%;
+    margin: 20px auto;
+}
+
+th, td {
+    padding: 6px;
+}
+
+th {
+    background-color: lightgray;
+}

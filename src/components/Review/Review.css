@@ -1,9 +1,11 @@
-table, td,th {
+.reviewTable, td,th {
     border-collapse: collapse;
-    max-width: 80%;
-    margin: auto;
     border: 1px solid gray;
+}
+.reviewTable {
+    max-width: 80%;
     background-color: lightgrey;
+    margin: auto;
 }
 
 th, td {
