@@ -1,13 +1,16 @@
+// This is the feedback_router file for the Week 11 assignment for Prime Digital Academy, created by 
+// Adam Boerhave, 10/30/2020 - 11/1/2020
+
+// require and define express
 const express = require('express');
-const { useLayoutEffect } = require('react');
-const { unstable_renderSubtreeIntoContainer } = require('react-dom');
 const router = express.Router();
 
+// required
 const pool = require('../modules/pool');
 
+// post route for sending object of feeling, understanding, and support values,
+// as well as comments to the db
 router.post('/', (req, res) => {
-    // console.log(req.body);
-    // res.sendStatus(200);
     
     let queryText = `insert into "feedback" ("feeling", "understanding", "support", "comments")
     values ($1, $2, $3, $4);`;
@@ -20,6 +23,7 @@ router.post('/', (req, res) => {
     });
 });
 
+// get route to get previous entries from database and display in Admin component
 router.get('/', (req, res) => {
     let queryText = `select * from feedback order by id desc;`;
 
@@ -30,9 +34,8 @@ router.get('/', (req, res) => {
     });
 });
 
+// delete route to delete feedback entry at req.params.id
 router.delete('/:id', (req, res) => {
-    console.log('req.params.id', req.params.id);
-    
     let queryText = `delete from feedback where id = $1;`;
 
     pool.query(queryText, [req.params.id]).then((result) => {
@@ -44,9 +47,8 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+// put route to toggle flag status of entry with id req.params.id
 router.put('/:id', (req, res) => {
-    console.log('put req.params.id', req.params.id);
-    console.log('put req.body.data', req.body.flagStatus);
     let queryText = `update feedback set "flagged" = $1 
     where id = $2;`;
 
