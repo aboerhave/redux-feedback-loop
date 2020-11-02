@@ -1,3 +1,8 @@
+-- This is the App.js file for the Week 11 assignment for Prime Digital Academy, created by 
+-- Adam Boerhave, 10/30/2020 - 11/1/2020
+-- It contains lines to create a table and add an initial feedback entry
+-- for the database
+
 -- Database should be prime_feedback
 -- CREATE DATABASE "prime_feedback";
 
