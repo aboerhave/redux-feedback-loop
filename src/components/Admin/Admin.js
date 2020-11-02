@@ -30,8 +30,10 @@ class Admin extends Component {
 
     deleteItem = (feedbackId) => {
         console.log('clicked');
-        
-        // let feedbackId = this.props.item.id;
+        let accept = window.confirm('Are you sure you want to delete the entry?');
+        if(!accept) {
+            return;
+        }
         console.log('feedbackId', feedbackId);
         
         axios({
@@ -44,6 +46,7 @@ class Admin extends Component {
             console.log('error', error);            
         });
     }
+
 
     flagItem = (flagId, flagStatus) => {
         console.log('flagId', flagId);
@@ -86,9 +89,8 @@ class Admin extends Component {
                                 <td>{item.understanding}</td>
                                 <td>{item.support}</td>
                                 <td>{item.comments}</td>
-                                <td><button onClick={() => this.deleteItem(item.id)}>Delete</button></td>
-                                <td><form><input type="checkbox" onChange={() => this.flagItem(item.id, item.flagged)} checked="checked"></input></form></td>
-                            {/* {JSON.stringify(item.flagged)} */}
+                                <td><button onClick={() => this.deleteItem(item.id)} >Delete</button></td>
+                                <td><button onClick={() => this.flagItem(item.id, item.flagged)} className="checkedButton">X</button></td>
                             </tr>
                         }
                     else if (!item.flagged) {
@@ -98,7 +100,7 @@ class Admin extends Component {
                             <td>{item.support}</td>
                             <td>{item.comments}</td>
                             <td><button onClick={() => this.deleteItem(item.id)}>Delete</button></td>
-                            <td><form><input type="checkbox" onChange={() => this.flagItem(item.id, item.flagged)}></input></form></td>
+                            <td><button onClick={() => this.flagItem(item.id, item.flagged)} className="uncheckedButton"></button></td>
                         </tr>
                     }    
                     })}

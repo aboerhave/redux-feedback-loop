@@ -24,3 +24,19 @@ th, td {
 th {
     background-color: lightgray;
 }
+
+.checkedButton {
+    vertical-align: top;
+    width: 30px;
+    height: 20px;
+    padding: 0;
+    background-color: mediumblue;
+    color: white;
+}
+
+.uncheckedButton {
+    vertical-align: top;
+    width: 30px;
+    height: 20px;
+    outline: 1px solid black;
+}
