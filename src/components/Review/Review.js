@@ -1,12 +1,15 @@
+// This is the Review.js file for the Week 11 assignment for Prime Digital Academy, created by 
+// Adam Boerhave, 10/30/2020 - 11/1/2020
+
 import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {HashRouter as Router, Route} from 'react-router-dom';
 import './Review.css'
 
 class Review extends Component {
 
-
+// This function is run to store values already in Redux to the database and
+// clear those Redux values and advance to the thank you page
 advancePage = () => {
     console.log('click forward');
     // store the redux values in the db here
@@ -27,13 +30,12 @@ advancePage = () => {
     })
     // clear the values from redux
     this.props.dispatch({type: 'CLEAR_VALUES'});
-
     this.props.history.push('/thankYou');
-  }
+}
 
-  backPage = () => {
+// function to go back a page when previous page button clicked
+backPage = () => {
     console.log('click backward');
-
     this.props.history.push('/comments');    
 }
 
@@ -68,6 +70,7 @@ advancePage = () => {
                 </tbody>
           </table>
           <br/>
+          {/* Previous and next page buttons */}
           <button onClick={this.backPage}>Previous Page</button>
           <button onClick={this.advancePage}>Submit</button>
       </div>
@@ -75,6 +78,7 @@ advancePage = () => {
   }
 }
 
+// Redux
 const putReduxStateOnProps = (reduxStore) => ({
   reduxStore
 })
