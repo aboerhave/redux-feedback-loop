@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {HashRouter as Router, Route} from 'react-router-dom';
 
 class Support extends Component {
 
     state = {
-        support: this.props.reduxStore.supportValue || 1
+        support: this.props.reduxStore.supportValue || 0
     }
 
     pickValue = (event) => {
@@ -17,17 +16,11 @@ class Support extends Component {
     advancePage = () => {
         console.log('click forward');
         console.log(this.state.support);
-        if ( this.state.support === 1) {
-            let accept = window.confirm("Please confirm your choice of 1");
-            if(accept) {
-        // dispatch goes here for sending data to redux of support value
-        this.props.dispatch({type: 'SET_SUPPORT_VALUE', payload: this.state.support});
-        this.props.history.push('/comments');
-            }
-            else {
-                return;
-            }
+        if ( this.state.support == 0) {
+            alert("Please choose a value for how well you feel supported today");
+            return
         }
+
         // dispatch goes here for sending data to redux of support value
         this.props.dispatch({type: 'SET_SUPPORT_VALUE', payload: this.state.support});
         this.props.history.push('/comments');
@@ -46,9 +39,12 @@ class Support extends Component {
     return (
       <div >
           <h2>How well are you being supported? (1-10)</h2>
+          <h3>1: Not well supported at all today</h3>
+          <h3>10: Greatly supported today</h3>
           <label>Support?</label>
           <br/>
           <select value={this.state.support} onClick={this.pickValue} >
+            <option value="0">Support</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -61,7 +57,6 @@ class Support extends Component {
             <option value="10">10</option>
           </select>
           <br/>
-          {JSON.stringify(this.props.reduxStore.supportValue)}
           <button onClick={this.backPage}>Previous Page</button>
           <button onClick={this.advancePage}>Next Page</button>
       </div>

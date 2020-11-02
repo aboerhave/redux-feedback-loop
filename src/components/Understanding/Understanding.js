@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
-import {HashRouter as Router, Route} from 'react-router-dom';
-import Header from '../Header/Header';
 
 class Understanding extends Component {
 
     state = {
-        understanding: this.props.reduxStore.understandingValue || 1
+        understanding: this.props.reduxStore.understandingValue || 0
     }
 
     pickValue = (event) => {
@@ -19,17 +16,11 @@ class Understanding extends Component {
     advancePage = () => {
         console.log('click forward');
         console.log(this.state.understanding);    
-        if ( this.state.understanding === 1) {
-            let accept = window.confirm("Please confirm your choice of 1");
-            if(accept) {
-                // dispatch goes here for sending data to redux of understanding value
-                this.props.dispatch({type: 'SET_UNDERSTANDING_VALUE', payload: this.state.understanding});
-                this.props.history.push('/support');
-            }
-            else {
-                return;
-            }
+        if ( this.state.understanding == 0) {
+            alert('Please choose a value for how well you have understood material today');
+            return;
         }
+        
         // dispatch goes here for sending data to redux of understanding value
         this.props.dispatch({type: 'SET_UNDERSTANDING_VALUE', payload: this.state.understanding});
         this.props.history.push('/support');
@@ -49,9 +40,12 @@ class Understanding extends Component {
     return (
       <div >
           <h2>How well are you understanding the content? (1-10)</h2>
+          <h3>1: Not understanding the material at all</h3>
+          <h3>10: Understanding the material very well</h3>
           <label>Understanding?</label>
           <br/>
           <select value={this.state.understanding} onChange={this.pickValue} >
+            <option value="0">Understanding</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -63,7 +57,6 @@ class Understanding extends Component {
             <option value="9">9</option>
             <option value="10">10</option>
           </select>
-          {JSON.stringify(this.state.understanding)}
           <br/>
           <button onClick={this.backPage}>Previous Page</button>
           <button onClick={this.advancePage}>Next Page</button>
