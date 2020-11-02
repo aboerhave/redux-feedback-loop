@@ -1,3 +1,7 @@
+// This is the server.js file for the Week 11 assignment for Prime Digital Academy, created by 
+// Adam Boerhave, 10/30/2020 - 11/1/2020
+
+// require express and body-parser
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');

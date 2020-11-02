@@ -1,28 +1,26 @@
+// This is the ThankYou.js file for the Week 11 assignment for Prime Digital Academy, created by 
+// Adam Boerhave, 10/30/2020 - 11/1/2020
+
+// imports
 import React, { Component } from 'react';
-import axios from 'axios';
-import {connect} from 'react-redux';
-import {HashRouter as Router, Route} from 'react-router-dom';
 
 class ThankYou extends Component {
 
-  advancePage = () => {
-    console.log('click forward');
-    // dispatch goes here for sending data to redux of feeling value
-    this.props.history.push('/');
-  }
+    // This function advances back to the exact path, which is the feeling page
+    advancePage = () => {
+        console.log('click forward');
+        this.props.history.push('/');
+    }
 
-  render() {
-    return (
-      <div >
-          <h2>Thank You for your Feedback!!</h2>
-          <button onClick={this.advancePage}>Leave New Feedback</button>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div >
+                <h2>Thank You for your Feedback!!</h2>
+                {/* button to return to beginning */}
+                <button onClick={this.advancePage}>Leave New Feedback</button>
+            </div>
+        );
+    }
 }
 
-const putReduxStateOnProps = (reduxStore) => ({
-  reduxStore
-})
-
-export default connect(putReduxStateOnProps)(ThankYou);
+export default ThankYou;
