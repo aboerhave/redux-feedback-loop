@@ -1,21 +1,28 @@
+// This is the Understanding.js file for the Week 11 assignment for Prime Digital Academy, created by 
+// Adam Boerhave, 10/30/2020 - 11/1/2020
+
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 class Understanding extends Component {
 
+    // initial state of component
     state = {
         understanding: this.props.reduxStore.understandingValue || 0
     }
 
+    // function to run when select input is changed
     pickValue = (event) => {
         this.setState({
           understanding: event.target.value
         })
-      }
+    }
     
+    // function to run when next page button clicked to check that the
+    // dropdown input has been selected and store understanding value to redux,
+    // and advance to next component page
     advancePage = () => {
         console.log('click forward');
-        console.log(this.state.understanding);    
         if ( this.state.understanding == 0) {
             alert('Please choose a value for how well you have understood material today');
             return;
@@ -26,14 +33,12 @@ class Understanding extends Component {
         this.props.history.push('/support');
     }
 
+    // function to run when previous page button clicked to go to the 
+    // previous component
     backPage = () => {
         console.log('click backward');
         console.log('understanding', this.state.understanding);
-        // should I save the state it is here when they go back?
-        // probably not, because maybe they
-        // accidentally change it as they go back multiple pages?
         this.props.history.push('/');
-        
     }
 
   render() {
@@ -44,6 +49,7 @@ class Understanding extends Component {
           <h3>10: Understanding the material very well</h3>
           <label>Understanding?</label>
           <br/>
+          {/* drop down input */}
           <select value={this.state.understanding} onChange={this.pickValue} >
             <option value="0">Understanding</option>
             <option value="1">1</option>
@@ -58,6 +64,7 @@ class Understanding extends Component {
             <option value="10">10</option>
           </select>
           <br/>
+          {/* previous and next page buttons */}
           <button onClick={this.backPage}>Previous Page</button>
           <button onClick={this.advancePage}>Next Page</button>
       </div>
@@ -65,6 +72,7 @@ class Understanding extends Component {
   }
 }
 
+// Redux
 const putReduxStateOnProps = (reduxStore) => ({
   reduxStore
 })

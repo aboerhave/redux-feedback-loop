@@ -1,24 +1,32 @@
+// This is the Support.js file for the Week 11 assignment for Prime Digital Academy, created by 
+// Adam Boerhave, 10/30/2020 - 11/1/2020
+
+//imports
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 class Support extends Component {
 
+    // initial state of component
     state = {
         support: this.props.reduxStore.supportValue || 0
     }
 
+    // function to run when select input is changed
     pickValue = (event) => {
         this.setState({
           support: event.target.value
         })
-      }
+    }
     
+    // function to run when next page button clicked to check that the
+    // dropdown input has been selected and store support value to redux,
+    // and advance to next component page
     advancePage = () => {
         console.log('click forward');
-        console.log(this.state.support);
         if ( this.state.support == 0) {
             alert("Please choose a value for how well you feel supported today");
-            return
+            return;
         }
 
         // dispatch goes here for sending data to redux of support value
@@ -26,6 +34,8 @@ class Support extends Component {
         this.props.history.push('/comments');
     }
 
+    // function to run when previous page button clicked to go to the 
+    // previous component
     backPage = () => {
         console.log('click backward');
         console.log('support', this.state.support);
@@ -43,6 +53,7 @@ class Support extends Component {
           <h3>10: Greatly supported today</h3>
           <label>Support?</label>
           <br/>
+          {/* drop down input */}
           <select value={this.state.support} onClick={this.pickValue} >
             <option value="0">Support</option>
             <option value="1">1</option>
@@ -57,6 +68,7 @@ class Support extends Component {
             <option value="10">10</option>
           </select>
           <br/>
+          {/* previous and next page buttons */}
           <button onClick={this.backPage}>Previous Page</button>
           <button onClick={this.advancePage}>Next Page</button>
       </div>
@@ -64,6 +76,7 @@ class Support extends Component {
   }
 }
 
+// Redux
 const putReduxStateOnProps = (reduxStore) => ({
   reduxStore
 })
