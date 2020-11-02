@@ -1,30 +1,39 @@
+/* This is the Admin stylesheet for the Week 11 assignment for Prime Digital Academy, created by 
+Adam Boerhave, 10/30/2020 - 11/1/2020 */
+
+/* color for flagged row */
 .flaggedRow {
     background-color: rgb(247, 247, 44);
 }
 
+/* keep default lightgray color for unflagged row */
 .unflaggedRow {
     background-color: lightgrey;
 }
 
+/* border for table */
 .adminTable, th, td {
     border-collapse: collapse;
     border: 1px solid gray;
-    
 }
 
+/* size of table */
 .adminTable {
     max-width: 80%;
     margin: 20px auto;
 }
 
+/* spacing of cells in table */
 th, td {
     padding: 6px;
 }
 
+/* bg color for top row */
 th {
     background-color: lightgray;
 }
 
+/* button design to make it look like a checkbox when clicked on */
 .checkedButton {
     vertical-align: top;
     width: 30px;
@@ -34,6 +43,7 @@ th {
     color: white;
 }
 
+/* button design to make it look like a checkbox when unchecked */
 .uncheckedButton {
     vertical-align: top;
     width: 30px;

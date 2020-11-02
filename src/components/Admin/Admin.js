@@ -1,20 +1,20 @@
-import React, { Component, useLayoutEffect } from 'react';
+// This is the Admin.js file for the Week 11 assignment for Prime Digital Academy, created by 
+// Adam Boerhave, 10/30/2020 - 11/1/2020
+
+// imports
+import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {HashRouter as Router, Route} from 'react-router-dom';
-// import AdminTable from '../AdminTable/AdminTable';
 import './Admin.css'
 
 class Admin extends Component {
 
-    state = {
-        flagActive: false
-    }
-
+    // function run when component is loaded to retrieve previously entered feedback
     componentDidMount = () => {
         this.getFeedback();
     }
 
+    // get request for database entries to display
     getFeedback = () => {
         axios({
             method: 'GET',
@@ -24,18 +24,17 @@ class Admin extends Component {
             this.props.dispatch({type: 'GET_FEEDBACK', payload: response.data});
         }).catch((error) => {
             console.log('error in get feedback', error);
-            
         });
     }
 
+    // function to delete clicked on item with alert for user to confirm delete
     deleteItem = (feedbackId) => {
         console.log('clicked');
         let accept = window.confirm('Are you sure you want to delete the entry?');
         if(!accept) {
             return;
         }
-        console.log('feedbackId', feedbackId);
-        
+        // axios request to server to delete item from db
         axios({
             method: 'DELETE',
             url: `/feedback/${feedbackId}`
@@ -47,22 +46,22 @@ class Admin extends Component {
         });
     }
 
-
+    // function to flag an entry by admin person
+    // it takes parameters flagId and flagStatus when it is called to 
+    // send to the server
     flagItem = (flagId, flagStatus) => {
-        console.log('flagId', flagId);
         // this should send the opposite value to the server so the 
         // database is changed to become the new value that's set here
         flagStatus = !flagStatus;
         
-        console.log('flagStatus', flagStatus);
-            axios({
-                method: 'PUT',
-                url: `/feedback/${flagId}`,
-                data: {flagStatus, flagStatus}
-            }).then((response) => {
-                console.log('response', response);
-                this.getFeedback();
-            })
+        axios({
+            method: 'PUT',
+            url: `/feedback/${flagId}`,
+            data: {flagStatus, flagStatus}
+        }).then((response) => {
+            console.log('response', response);
+            this.getFeedback();
+        });
     }
 
   render() {
@@ -81,8 +80,9 @@ class Admin extends Component {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* map through array of items from db and attach class of flaggedRow
+                    or unflaggedRow to them to make bg yellow  and check box or remain gray */}
                     {this.props.reduxStore.feedbackList.map((item) => {
-                        // return
                     if(item.flagged) {        
                         return  <tr key={item.id} className="flaggedRow">
                                 <td>{item.feeling}</td>
@@ -111,6 +111,7 @@ class Admin extends Component {
   }
 }
 
+// Redux
 const putReduxStateOnProps = (reduxStore) => ({
   reduxStore
 })
