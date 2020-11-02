@@ -38,7 +38,7 @@ class Support extends Component {
   render() {
     return (
       <div >
-          <h2>How well are you being supported? (1-10)</h2>
+          <h2>How well do you feel supported today? (1-10)</h2>
           <h3>1: Not well supported at all today</h3>
           <h3>10: Greatly supported today</h3>
           <label>Support?</label>

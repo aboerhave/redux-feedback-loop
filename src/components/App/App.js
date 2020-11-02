@@ -1,6 +1,7 @@
 // This is the App.js file for the Week 11 assignment for Prime Digital Academy, created by 
 // Adam Boerhave, 10/30/2020 - 11/1/2020
 
+// imports
 import React, { Component } from 'react';
 import './App.css';
 import {connect} from 'react-redux';
@@ -21,7 +22,7 @@ class App extends Component {
         <div className="App">
           <Header />
           {/* Only the feeling component displays at exact path /
-          The rest are just the paths for later */}
+          The rest are the paths for later */}
           <Route exact path='/' component={Feeling} />
           <Route path='/understanding' component={Understanding} />
           <Route path='/support' component={Support} />
@@ -35,6 +36,7 @@ class App extends Component {
   }
 }
 
+// Redux
 const putReduxStateOnProps = (reduxStore) => ({
   reduxStore
 })

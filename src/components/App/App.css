@@ -1,14 +1,20 @@
+/* This is the App stylesheet for the Week 11 assignment for Prime Digital Academy, created by  */
+/* Adam Boerhave, 10/30/2020 - 11/1/2020 */
+
+/* app spacing */
 .App {
   text-align: center;
 }
 
+/* header spacing and color */
 .App-header {
-  background-color: #342770;
+  background-color: #52116b;
   min-height: 70px;
   padding: 20px;
   color: white;
 }
 
+/* size of title */
 .App-title {
   font-size: 1.5em;
 }
@@ -17,22 +23,27 @@
   font-size: large;
 }
 
+/* page body background color */
 body {
-  background-color: rgb(226, 185, 238);
+  background-color: rgb(209, 155, 214);
 }
 
+/* spacing and size for drop down boxes */
 select {
   margin: 15px;
   padding: 5px;
   font-size: 16px;
 }
 
+/* spacing and size for buttons */
 button {
   padding: 4px;
   font-size: 16px;
   margin: 6px;
 }
 
+/* size of comment box */
+/* maybe later can figure out how to make text go to next line */
 .commentBox {
   width: 300px;
   height: 50px;
