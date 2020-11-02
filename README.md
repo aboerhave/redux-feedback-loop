@@ -15,3 +15,69 @@ Feeling Component
 
 Understanding Component
 ![Screen Shot 2](public/images/2.png)
+
+Support Component
+![Screen Shot 3](public/images/3.png)
+
+Comments Component
+![Screen Shot 4](public/images/4.png)
+
+Review Component
+![Screen Shot 5](public/images/5.png)
+
+Thank You Component
+![Screen Shot 6](public/images/6.png)
+
+Admin Component
+![Screen Shot 7](public/images/7.png)
+
+### Prerequisites
+
+- The project requires Node.  It may be downloaded here: https://nodejs.org/en/
+
+- The project requires the creation of a database.  Postgresql was used for this project.  The database is titled prime_feedback and a command for creating the "feedback" table is in the data.sql file.  It may be found here: https://www.postgresql.org/.  Postico also may be used to visually see the database.  It is found here: https://eggerapps.at/postico/
+
+- The project requires an understanding of HTML, CSS, JavaScript, React with Redux, http requests to a server, queries to a database, and an understanding of pool
+
+## Installation
+
+This project can be forked and cloned fromt he Github repository.  It has many dependencies that can be installed using the command 'npm install'.  
+
+A Postgresql database is required.  It needs to be called prime_feedback, and the table can be created by copying the contents of the data.sql file into Postico and executing.
+
+In the terminal, enter the command 'npm run server'.  Open a new terminal window, and enter the command 'npm run client'.  This should open the browser at the initial page, which asks the user how they are feeling today.
+
+## Usage 
+
+1.  On pageload, the app will be brought to the feeling component, which asks the user to choose a value for how they are feeling today.  A dropdown box is used for this, with input validation that requires a choice between 1 and 10.  
+
+2.  This is repeated for the next two page components, their understanding of material and level of support for the day.
+
+3.  The next page is available for the user to add comments, if they wish.
+
+4.  On the next page, the previously saved values for the previous components are displayed for the user to review.  At this point, the user may return to any of the previous pages and update their input and return to this review page.  These values are only saved when the user advances pages, not going backwards, just in case they changed an input inadvertently, and continued backwards.  When the submit button is clicked, all feedback input values are sent to the database for storage.
+
+5.  The next page has a message thanking the user for their feedback, and a button that returns them to the beginning of the feedback loop.
+
+6.  If the browser is directed to localhost:3000/#/admin, the admin component is displayed.  Here, previous entries are retrieved from the database and displayed.  They submission values for feeling, understanding, support and comments are in a table.  Two buttons exist to allow the administrator to delete a feedback entry, with a confirmation check alert, and another button to flag an entry for review later with the row turning yellow to highlight it.
+
+## Next Steps
+
+1.  If I return to the project, I would try to determine how to make the input box in the comments section advance to a second line after the first is filled in.
+
+2.  I would also try to break the select dropdown boxes, as well as the tablea in the review and admin components, into separate components to make things simpler.
+
+## Built With
+
+## Built With
+
+- Redux
+- React
+- CSS
+- Node
+- Express
+- JavaScript
+- HTML
+- Postgresql
+- Pool
+- Axios
